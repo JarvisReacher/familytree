@@ -35,10 +35,17 @@ function displayFamilyTree() {
     const familyTreeDiv = document.getElementById('family-tree');
     familyTreeDiv.innerHTML = ''; // Clear existing content
 
+    // Create a wrapper for the family tree
+    const familyTreeWrapper = document.createElement('div');
+    familyTreeWrapper.classList.add('family-tree-wrapper');
+
+    // Create family tree structure (for simplicity, showing all members in a single level)
     familyMembers.forEach(member => {
         const memberDiv = document.createElement('div');
         memberDiv.classList.add('family-member');
         memberDiv.innerHTML = `<p><strong>${member.name}</strong></p><p>${member.relation}</p>`;
-        familyTreeDiv.appendChild(memberDiv);
+        familyTreeWrapper.appendChild(memberDiv);
     });
+
+    familyTreeDiv.appendChild(familyTreeWrapper);
 }
