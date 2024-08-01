@@ -1,70 +1,40 @@
-body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
+let familyMembers = [];
+
+function addFamilyMember() {
+    const name = document.getElementById('name').value.trim();
+    const relation = document.getElementById('relation').value.trim();
+
+    if (name === '' || relation === '') {
+        alert('Please enter both name and relation.');
+        return;
+    }
+
+    const newMember = {
+        name: name,
+        relation: relation
+    };
+
+    familyMembers.push(newMember);
+
+    document.getElementById('name').value = '';
+    document.getElementById('relation').value = '';
+
+    displayFamilyTree();
 }
 
-h1, h2 {
-    color: #333;
-}
+function displayFamilyTree() {
+    const familyTreeDiv = document.getElementById('family-tree');
+    familyTreeDiv.innerHTML = '';
 
-#family-tree {
-    margin-top: 20px;
-    display: flex;
-    justify-content: center;
-}
+    const familyTreeWrapper = document.createElement('div');
+    familyTreeWrapper.classList.add('family-tree-wrapper');
 
-.family-tree-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+    familyMembers.forEach(member => {
+        const memberDiv = document.createElement('div');
+        memberDiv.classList.add('family-member');
+        memberDiv.innerHTML = `<p><strong>${member.name}</strong></p><p>${member.relation}</p>`;
+        familyTreeWrapper.appendChild(memberDiv);
+    });
 
-.family-member {
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin: 5px;
-    background-color: #eaeaea;
-    position: relative;
-}
-
-.family-member:before {
-    content: "";
-    position: absolute;
-    top: -10px;
-    left: 50%;
-    width: 1px;
-    height: 10px;
-    background-color: #000;
-    transform: translateX(-50%);
-}
-
-.family-member:first-child:before {
-    display: none;
-}
-
-.family-member:not(:last-child):after {
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    width: 1px;
-    height: 20px;
-    background-color: #000;
-    transform: translateX(-50%);
-}
-
-form {
-    margin-top: 20px;
-}
-
-input, button {
-    padding: 10px;
-    margin: 5px;
-}
-
-button {
-    cursor: pointer;
+    familyTreeDiv.appendChild(familyTreeWrapper);
 }
