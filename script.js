@@ -1,51 +1,70 @@
-// Array to hold family members
-let familyMembers = [];
-
-// Function to add a family member
-function addFamilyMember() {
-    // Get form values
-    const name = document.getElementById('name').value.trim();
-    const relation = document.getElementById('relation').value.trim();
-
-    // Ensure both fields are filled
-    if (name === '' || relation === '') {
-        alert('Please enter both name and relation.');
-        return;
-    }
-
-    // Create a new family member object
-    const newMember = {
-        name: name,
-        relation: relation
-    };
-
-    // Add new member to the array
-    familyMembers.push(newMember);
-
-    // Clear the form
-    document.getElementById('name').value = '';
-    document.getElementById('relation').value = '';
-
-    // Update the family tree display
-    displayFamilyTree();
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
 }
 
-// Function to display the family tree
-function displayFamilyTree() {
-    const familyTreeDiv = document.getElementById('family-tree');
-    familyTreeDiv.innerHTML = ''; // Clear existing content
+h1, h2 {
+    color: #333;
+}
 
-    // Create a wrapper for the family tree
-    const familyTreeWrapper = document.createElement('div');
-    familyTreeWrapper.classList.add('family-tree-wrapper');
+#family-tree {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
 
-    // Create family tree structure (for simplicity, showing all members in a single level)
-    familyMembers.forEach(member => {
-        const memberDiv = document.createElement('div');
-        memberDiv.classList.add('family-member');
-        memberDiv.innerHTML = `<p><strong>${member.name}</strong></p><p>${member.relation}</p>`;
-        familyTreeWrapper.appendChild(memberDiv);
-    });
+.family-tree-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
-    familyTreeDiv.appendChild(familyTreeWrapper);
+.family-member {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 5px;
+    background-color: #eaeaea;
+    position: relative;
+}
+
+.family-member:before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    width: 1px;
+    height: 10px;
+    background-color: #000;
+    transform: translateX(-50%);
+}
+
+.family-member:first-child:before {
+    display: none;
+}
+
+.family-member:not(:last-child):after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    width: 1px;
+    height: 20px;
+    background-color: #000;
+    transform: translateX(-50%);
+}
+
+form {
+    margin-top: 20px;
+}
+
+input, button {
+    padding: 10px;
+    margin: 5px;
+}
+
+button {
+    cursor: pointer;
 }
