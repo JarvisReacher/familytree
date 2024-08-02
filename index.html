@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Family Tree</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <h1>My Family Tree</h1>
@@ -11,13 +12,14 @@
     <h2>Add Family Member</h2>
     <form id="family-form">
         <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required><br><br>
+        <input type="text" id="name" name="name" required>
         <label for="relation">Relation:</label>
-        <input type="text" id="relation" name="relation" required><br><br>
+        <input type="text" id="relation" name="relation" required>
+        <label for="parent">Parent:</label>
+        <input type="text" id="parent" name="parent">
         <button type="button" onclick="addFamilyMember()">Add Member</button>
     </form>
 
     <script src="script.js"></script>
 </body>
 </html>
-
