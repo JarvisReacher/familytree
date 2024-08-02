@@ -80,3 +80,9 @@ h1, h2 {
     background-color: #000;
     transform: translateX(-50%);
 }
+
+.family-member .parent-box {
+    border: 1px solid #000;
+    margin: 10px 0;
+    padding: 5px;
+}
