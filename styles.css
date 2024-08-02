@@ -11,27 +11,36 @@ h1, h2 {
 }
 
 #family-tree {
-    margin-top: 20px;
     display: flex;
     justify-content: center;
+    margin-top: 20px;
 }
 
-.family-tree-wrapper {
+.tree-root {
     display: flex;
     flex-direction: column;
     align-items: center;
-    position: relative;
 }
 
 .family-member {
     border: 1px solid #ccc;
     padding: 10px;
-    margin: 5px;
+    margin: 10px;
     background-color: #eaeaea;
     position: relative;
 }
 
-.family-member:before {
+.family-member p {
+    margin: 0;
+}
+
+.children-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.family-member::before {
     content: "";
     position: absolute;
     top: -10px;
@@ -42,30 +51,33 @@ h1, h2 {
     transform: translateX(-50%);
 }
 
-.family-member:first-child:before {
+.family-member:first-child::before {
     display: none;
 }
 
-.family-member:not(:last-child):after {
+.children-container::before {
     content: "";
     position: absolute;
-    top: 100%;
+    top: 0;
     left: 50%;
     width: 1px;
-    height: 20px;
+    height: 10px;
     background-color: #000;
     transform: translateX(-50%);
 }
 
-form {
-    margin-top: 20px;
+.family-member + .family-member::before {
+    display: none;
 }
 
-input, button {
-    padding: 10px;
-    margin: 5px;
+.family-member + .family-member::after {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    width: 1px;
+    height: 10px;
+    background-color: #000;
+    transform: translateX(-50%);
 }
 
-button {
-    cursor: pointer;
-}
