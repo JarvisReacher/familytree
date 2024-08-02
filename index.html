@@ -10,12 +10,18 @@
     <div id="family-tree"></div>
 
     <h2>Add Family Member</h2>
-    <form id="family-form">
+    <form id="initial-form">
+        <label for="number-of-members">How many family members would you like to add?</label>
+        <input type="number" id="number-of-members" name="number-of-members" min="1" required>
+        <button type="button" onclick="setNumberOfMembers()">Set</button>
+    </form>
+
+    <form id="family-form" style="display: none;">
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" placeholder="Enter full name" required>
-        <label for="relation">Relation:</label>
+        <label for="relation">Relation (e.g., Father, Mother, Sister):</label>
         <input type="text" id="relation" name="relation" placeholder="e.g., Father, Mother, Sister" required>
-        <label for="parent">Parent (if applicable):</label>
+        <label for="parent">Parent (if applicable, enter parent's name):</label>
         <input type="text" id="parent" name="parent" placeholder="Enter parent's name if applicable">
         <button type="button" onclick="addFamilyMember()">Add Member</button>
     </form>
