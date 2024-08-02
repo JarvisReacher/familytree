@@ -1,4 +1,18 @@
 let familyMembers = [];
+let membersToAdd = 0;
+
+function setNumberOfMembers() {
+    const numberOfMembersInput = document.getElementById('number-of-members');
+    membersToAdd = parseInt(numberOfMembersInput.value, 10);
+
+    if (membersToAdd > 0) {
+        document.getElementById('initial-form').style.display = 'none';
+        document.getElementById('family-form').style.display = 'block';
+        alert('Great! Let\'s start adding family members.');
+    } else {
+        alert('Please enter a valid number of family members.');
+    }
+}
 
 function addFamilyMember() {
     const name = document.getElementById('name').value.trim();
@@ -22,7 +36,15 @@ function addFamilyMember() {
     document.getElementById('relation').value = '';
     document.getElementById('parent').value = '';
 
-    displayFamilyTree();
+    membersToAdd--;
+
+    if (membersToAdd > 0) {
+        alert(`${membersToAdd} more member(s) to add.`);
+    } else {
+        document.getElementById('family-form').style.display = 'none';
+        alert('All members added! Here is your family tree.');
+        displayFamilyTree();
+    }
 }
 
 function displayFamilyTree() {
