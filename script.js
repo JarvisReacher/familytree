@@ -17,7 +17,8 @@ function setNumberOfMembers() {
 function addFamilyMember() {
     const name = document.getElementById('name').value.trim();
     const relation = document.getElementById('relation').value.trim();
-    const parent = document.getElementById('parent').value.trim();
+    const parent1 = document.getElementById('parent1').value.trim();
+    const parent2 = document.getElementById('parent2').value.trim();
 
     if (name === '' || relation === '') {
         alert('Please enter both name and relation.');
@@ -27,14 +28,15 @@ function addFamilyMember() {
     const newMember = {
         name: name,
         relation: relation,
-        parent: parent
+        parents: [parent1, parent2].filter(p => p)
     };
 
     familyMembers.push(newMember);
 
     document.getElementById('name').value = '';
     document.getElementById('relation').value = '';
-    document.getElementById('parent').value = '';
+    document.getElementById('parent1').value = '';
+    document.getElementById('parent2').value = '';
 
     membersToAdd--;
 
@@ -60,7 +62,7 @@ function buildTreeStructure() {
     const root = document.createElement('div');
     root.classList.add('tree-root');
 
-    const rootMembers = familyMembers.filter(member => !member.parent);
+    const rootMembers = familyMembers.filter(member => member.parents.length === 0);
 
     rootMembers.forEach(member => {
         const memberElement = createMemberElement(member);
@@ -79,7 +81,7 @@ function createMemberElement(member) {
 }
 
 function addChildren(parentElement, parentName) {
-    const children = familyMembers.filter(member => member.parent === parentName);
+    const children = familyMembers.filter(member => member.parents.includes(parentName));
 
     if (children.length > 0) {
         const childrenContainer = document.createElement('div');
@@ -94,3 +96,5 @@ function addChildren(parentElement, parentName) {
         parentElement.appendChild(childrenContainer);
     }
 }
+
+
